@@ -23,8 +23,8 @@ StripBrightnessManager *_stripBrightnessManager = new StripBrightnessManager(_st
 void setup()
 {
 	// Hardcoded effect selection (to be replaced with some kind of manual selection)
-	//_currentEffect = &_fireEffect;
-	_currentEffect = &_christmasEffect;
+	_currentEffect = &_fireEffect;
+	//_currentEffect = &_christmasEffect;
 
 	_stripManager->Init();
 	_stripBrightnessManager->Init();
