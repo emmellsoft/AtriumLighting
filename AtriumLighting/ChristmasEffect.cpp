@@ -22,10 +22,8 @@
 #define TWINKLER_FADING_MODE_FADE_UP	2
 #define TWINKLER_FADING_MODE_FADE_DOWN	3
 
-
 // Minimum distance between two twinkling LEDs
 #define MIN_TWINKLING_LED_DISTANCE	4
-
 
 void Twinkler::Reset()
 {
@@ -69,12 +67,10 @@ uint32_t Twinkler::GetColor()
 	return _colorFader.GetColor();
 }
 
-
-
-
-
-ChristmasEffect::ChristmasEffect()
+ChristmasEffect::ChristmasEffect(int totalLedCount)
 {
+	_totalLedCount = totalLedCount;
+
 	for (size_t i = 0; i < TWINKLER_COUNT; i++)
 	{
 		_virtualLedIndices[i] = 255;
@@ -105,7 +101,7 @@ uint8_t ChristmasEffect::ChooseVirtualLedIndex()
 	while (true)
 	{
 		// Just pick a random LED
-		uint8_t virtualLedIndex = random(TOTAL_LED_COUNT);
+		uint8_t virtualLedIndex = random(_totalLedCount);
 
 		// Ensure that the selected LED is far enough from all existing twinklings
 		bool hit = false;

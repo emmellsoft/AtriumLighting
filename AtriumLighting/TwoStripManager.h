@@ -2,15 +2,13 @@
 #define _TWOSTRIPMANAGER_h
 
 #if defined(ARDUINO) && ARDUINO >= 100
-	#include "arduino.h"
+#include "arduino.h"
 #else
-	#include "WProgram.h"
+#include "WProgram.h"
 #endif
-
 
 #include <Adafruit_NeoPixel.h>
 #include "StripManager.h"
-
 
 // An implementation of the abstract StripManager class that
 // concatenates two LED strips into one, and virtually rearrange
@@ -19,9 +17,9 @@ class TwoStripManager : public StripManager
 {
 public:
 	void Init();
+	int GetTotalLedCount();
 	void SetBrightness(uint8_t brightness);
 	void SetPixelColor(uint16_t virtualLedIndex, uint32_t color);
-	void Clear();
 	void Show();
 
 private:
@@ -31,7 +29,6 @@ private:
 	uint8_t GetStripNumber(int virtualLedIndex);
 	uint8_t GetLedIndex(int virtualLedIndex);
 };
-
 
 #endif
 

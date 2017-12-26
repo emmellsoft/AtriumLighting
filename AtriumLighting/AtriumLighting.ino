@@ -7,10 +7,6 @@
 #include "FireEffect.h"
 #include "ChristmasEffect.h"
 
-// The set of available effects:
-FireEffect _fireEffect;
-ChristmasEffect _christmasEffect;
-
 // The current effect:
 Effect *_currentEffect;
 
@@ -19,12 +15,15 @@ StripManager *_stripManager = new TwoStripManager();
 AmbientLight *_ambientLight = new AmbientLight(PIN_PHOTO_RESISTOR, TWILIGHT_LOW, TWILIGHT_HIGH);
 StripBrightnessManager *_stripBrightnessManager = new StripBrightnessManager(_stripManager, _ambientLight);
 
+// The set of available effects:
+FireEffect *_fireEffect = new FireEffect();
+ChristmasEffect *_christmasEffect = new ChristmasEffect(_stripManager->GetTotalLedCount());
 
 void setup()
 {
 	// Hardcoded effect selection (to be replaced with some kind of manual selection)
-	_currentEffect = &_fireEffect;
-	//_currentEffect = &_christmasEffect;
+	_currentEffect = _fireEffect;
+	//_currentEffect = _christmasEffect;
 
 	_stripManager->Init();
 	_stripBrightnessManager->Init();

@@ -1,15 +1,11 @@
 #include "TwoStripManager.h"
 
-
-
 // The arrangement of LEDs within a module, both the actual layout of the two strips, and the requested "virtual" module:
 // STRIP 1       STRIP 2      VIRTUAL MODULE
-// (3)(0)        (0)(3)          (0)(1)			 
-// (2)(1)        (1)(2)          (2)(3)			 
+// (3)(0)        (0)(3)          (0)(1)
+// (2)(1)        (1)(2)          (2)(3)
 //
 // Where (0) is the first LED of the module and (3) is the last.
-
-
 
 // The layout of LED arrangement of the two strips, and how the virtual LEDs are arranged (as one consecutive strip)
 //
@@ -23,6 +19,10 @@
 // The virtual strip is starting at the far left and going right.
 // Having one long (virtual) homogenous strip makes it easier to create cool effects than having to deal with two with different layouts.
 
+int TwoStripManager::GetTotalLedCount()
+{
+	return TOTAL_LED_COUNT;
+}
 
 void TwoStripManager::Init()
 {
@@ -73,7 +73,7 @@ uint8_t TwoStripManager::GetLedIndex(int virtualLedIndex)
 	if (virtualLedIndex < LEDS_STRIP_1)
 	{
 		// The LED is on strip 1.
-		
+
 		// Identify the 4-module of the physical LED and the index of the first LED of that module:
 		uint8_t firstLedIndex = (STRIP_1_MODULE_COUNT - 1 - (virtualLedIndex >> 2)) << 2;
 

@@ -2,9 +2,9 @@
 #define _CHRISTMASEFFECT_h
 
 #if defined(ARDUINO) && ARDUINO >= 100
-	#include "arduino.h"
+#include "arduino.h"
 #else
-	#include "WProgram.h"
+#include "WProgram.h"
 #endif
 
 #include "Effect.h"
@@ -23,17 +23,15 @@ private:
 	uint8_t _fadingMode;
 };
 
-
 // The total number of simultaneous twinkle effects.
 #define TWINKLER_COUNT	6
-
 
 // An effect for the christmas holiday.
 // All LEDs are soft red with a random twinkle effect.
 class ChristmasEffect : public Effect
 {
 public:
-	ChristmasEffect();
+	ChristmasEffect(int totalLedCount);
 
 	void Update();
 
@@ -42,10 +40,10 @@ public:
 private:
 	uint8_t _virtualLedIndices[TWINKLER_COUNT];
 	Twinkler _twinklers[TWINKLER_COUNT];
+	int _totalLedCount;
 
 	uint8_t ChooseVirtualLedIndex();
 };
-
 
 #endif
 
